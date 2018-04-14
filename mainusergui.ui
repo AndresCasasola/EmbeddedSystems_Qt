@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainUserGUI</class>
+ <widget class="QWidget" name="MainUserGUI">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>601</width>
+    <height>289</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>GUIPanel</string>
+  </property>
+  <widget class="QPushButton" name="runButton">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>10</y>
+     <width>98</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Inicio</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pingButton">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>50</y>
+     <width>61</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Ping</string>
+   </property>
+  </widget>
+  <widget class="QSplitter" name="splitter">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>221</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <widget class="QLabel" name="serialPortLabel">
+    <property name="text">
+     <string>Puerto Serie:</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="serialPortComboBox"/>
+  </widget>
+  <widget class="QSplitter" name="splitter_2">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>80</y>
+     <width>97</width>
+     <height>66</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+   <widget class="QCheckBox" name="rojo">
+    <property name="text">
+     <string>Rojo</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="verde">
+    <property name="text">
+     <string>Verde</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="azul">
+    <property name="text">
+     <string>Azul</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QwtKnob" name="Knob">
+   <property name="geometry">
+    <rect>
+     <x>118</x>
+     <y>44</y>
+     <width>129</width>
+     <height>134</height>
+    </rect>
+   </property>
+   <property name="upperBound">
+    <double>1.000000000000000</double>
+   </property>
+   <property name="value">
+    <double>0.500000000000000</double>
+   </property>
+   <property name="singleSteps">
+    <UInt>0</UInt>
+   </property>
+   <property name="pageSteps">
+    <UInt>10</UInt>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>256</y>
+     <width>64</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Estado:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="statusLabel">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>260</y>
+     <width>331</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Detenido</string>
+   </property>
+  </widget>
+  <widget class="color_widgets::ColorWheel" name="colorWheel">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>100</y>
+     <width>100</width>
+     <height>100</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>color_widgets::ColorWheel</class>
+   <extends>QWidget</extends>
+   <header>color_wheel.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>QwtKnob</class>
+   <extends>QWidget</extends>
+   <header>qwt_knob.h</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>serialPortComboBox</tabstop>
+  <tabstop>pingButton</tabstop>
+  <tabstop>runButton</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
