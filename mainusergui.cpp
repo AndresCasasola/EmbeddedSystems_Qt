@@ -54,6 +54,11 @@ MainUserGUI::MainUserGUI(QWidget *parent) :  // Constructor de la clase
     connect(ui->Knob,SIGNAL(valueChanged(double)),&tiva,SLOT(LEDPwmBrightness(double)));
     connect(&tiva,SIGNAL(pingReceivedFromTiva()),this,SLOT(pingResponseReceived()));
     connect(&tiva,SIGNAL(commandRejectedFromTiva(int16_t)),this,SLOT(CommandRejected(int16_t)));
+    connect(ui->Botones,SIGNAL(clicked(bool)),&tiva,SLOT(switchesSound()));
+    connect(&tiva,SIGNAL(receiveSwitchesState(bool,bool)),this,SLOT(changeSwitchesState(bool,bool)));
+    connect(ui->BotonesCheckBox,SIGNAL(toggled(bool)),&tiva,SLOT(switchesInterruptEnable(bool)));
+    connect(&tiva,SIGNAL(receiveSwitchesState(bool,bool)),this,SLOT(changeSwitchesState(bool,bool)));
+
 }
 
 MainUserGUI::~MainUserGUI() // Destructor de la clase
@@ -162,6 +167,21 @@ void MainUserGUI::CommandRejected(int16_t code)
 
 void MainUserGUI::on_colorWheel_colorChanged(const QColor &arg1)
 {
-    //Poner aqui el codigo para pedirle al objeto "tiva" (clase QRemoteTIVA) que envíe la orden de cambiar el Color hacia el microcontrolador
+    tiva.LEDPwmColor(arg1);
+}
 
+void MainUserGUI::on_pwmGpio_Check_toggled(bool checked)
+{
+    tiva.switchMode(checked);
+}
+
+void MainUserGUI::LEDPwmBrightness(double value)
+{
+    tiva.LEDPwmBrightness(value);
+}
+
+void MainUserGUI::changeSwitchesState(bool state1, bool state2){
+
+    ui->led_1->setChecked(state1);
+    ui->led_2->setChecked(state2);
 }

@@ -150,9 +150,137 @@
     </sizepolicy>
    </property>
   </widget>
+  <widget class="QCheckBox" name="pwmGpio_Check">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>50</y>
+     <width>101</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Pwm / Gpio</string>
+   </property>
+  </widget>
+  <widget class="Led" name="led_1">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>200</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>Color Led component</string>
+   </property>
+   <property name="whatsThis">
+    <string>Led indicator</string>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="color">
+    <color>
+     <red>115</red>
+     <green>210</green>
+     <blue>22</blue>
+    </color>
+   </property>
+  </widget>
+  <widget class="Led" name="led_2">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>200</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>Color Led component</string>
+   </property>
+   <property name="whatsThis">
+    <string>Led indicator</string>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="color">
+    <color>
+     <red>115</red>
+     <green>210</green>
+     <blue>22</blue>
+    </color>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>230</y>
+     <width>62</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>SW1</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>230</y>
+     <width>62</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>SW2</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Botones">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>170</y>
+     <width>111</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Estado Botones</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="BotonesCheckBox">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>170</y>
+     <width>141</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Botones ON/OFF</string>
+   </property>
+  </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
+  <customwidget>
+   <class>Led</class>
+   <extends>QWidget</extends>
+   <header>analogwidgets/led.h</header>
+  </customwidget>
   <customwidget>
    <class>color_widgets::ColorWheel</class>
    <extends>QWidget</extends>

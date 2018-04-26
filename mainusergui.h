@@ -25,11 +25,15 @@ private slots:
     void on_pushButton_clicked();    
     void on_colorWheel_colorChanged(const QColor &arg1);
 
+
     //Otros slots
     void cambiaLEDs();
     void tivaStatusChanged(int status,QString message);
     void pingResponseReceived(void);
     void CommandRejected(int16_t code);    
+    void LEDPwmBrightness(double value);
+    void on_pwmGpio_Check_toggled(bool checked);
+    void changeSwitchesState(bool state1, bool state2);
 
 private:
     // funciones privadas

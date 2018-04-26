@@ -85,6 +85,25 @@ void QTivaRPC::processIncommingSerialData()
                         emit pingReceivedFromTiva();
                         break;
 
+                    case COMMAND_SWITCHES_SOUND:
+                    {
+                        PARAMETERS_SWITCHES_SOUND parametro;
+
+                        if (check_and_extract_command_param(ptrtoparam, tam, sizeof(parametro),&parametro)>0){
+                            emit receiveSwitchesState(parametro.state1, parametro.state2);
+                        }
+                    }
+                        break;
+
+                    case COMMAND_SWITCHES_INTERRUPT:
+                    {
+                        PARAMETERS_SWITCHES_INTERRUPT parametro;
+
+                        if (check_and_extract_command_param(ptrtoparam, tam, sizeof(parametro),&parametro)>0){
+                            emit receiveSwitchesState(parametro.state1, parametro.state2);
+                        }
+                    }
+                        break;
                     case COMMAND_REJECTED:
                     {
                         // En otros comandos hay que extraer los parametros de la trama y copiarlos
@@ -268,3 +287,78 @@ void QTivaRPC::LEDPwmBrightness(double value)
     }
 }
 
+    /* Edited */
+
+void QTivaRPC::switchMode(bool mode)
+{
+    PARAMETERS_GPIO_PWM_MODE parametro;
+    uint8_t pui8Frame[MAX_FRAME_SIZE];
+    int size;
+    if(connected)
+    {
+        // Se rellenan los parametros
+        parametro.mode=mode;
+        // Se crea la trama con n de secuencia 0; comando COMANDO_LEDS; se le pasa la
+        // estructura de parametros, indicando su tamaño; el nº final es el tamaño maximo
+        // de trama
+        size=create_frame((uint8_t *)pui8Frame, COMMAND_GPIO_PWM_MODE, &parametro, sizeof(parametro), MAX_FRAME_SIZE);
+        // Se se pudo crear correctamente, se envia la trama
+        if (size>0) serial.write((char *)pui8Frame,size);
+    }
+}
+
+void QTivaRPC::LEDPwmColor(const QColor &color)
+{
+    PARAMETERS_LED_PWM_COLOR parametro;
+    uint8_t pui8Frame[MAX_FRAME_SIZE];
+    int size;
+
+    if(connected)
+    {
+        // Se rellenan los parametros del paquete
+        parametro.rgb[0]=color.red();
+        parametro.rgb[1]=color.green();
+        parametro.rgb[2]=color.blue();
+        // Se crea la trama con n de secuencia 0; comando COMANDO_LEDS; se le pasa la
+        // estructura de parametros, indicando su tamaño; el nº final es el tamaño maximo
+        // de trama
+        size=create_frame((uint8_t *)pui8Frame, COMMAND_LED_PWM_COLOR, &parametro, sizeof(parametro), MAX_FRAME_SIZE);
+        // Se se pudo crear correctamente, se envia la trama
+        if (size>0) serial.write((char *)pui8Frame,size);
+    }
+}
+
+void QTivaRPC::switchesSound()
+{
+    char paquete[MAX_FRAME_SIZE];
+    int size;
+
+    if(connected)
+    {
+        // Se crea la trama con n de secuencia 0; comando COMANDO_LEDS; se le pasa la
+        // estructura de parametros, indicando su tamaño; el nº final es el tamaño maximo
+        // de trama
+        size=create_frame((unsigned char *)paquete, COMMAND_SWITCHES_SOUND, NULL, 0, MAX_FRAME_SIZE);
+        // Se se pudo crear correctamente, se envia la trama
+        if (size>0) serial.write(paquete,size);
+    }
+}
+
+void QTivaRPC::switchesInterruptEnable(bool check)
+{
+    PARAMETERS_SWITCHES_INTERRUPT_ENABLE parametro;
+    uint8_t pui8Frame[MAX_FRAME_SIZE];
+    int size;
+
+    if(connected)
+    {
+        // Se rellenan los parametros
+        parametro.check=check;
+        // Se crea la trama con n de secuencia 0; comando COMANDO_LEDS; se le pasa la
+        // estructura de parametros, indicando su tamaño; el nº final es el tamaño maximo
+        // de trama
+        size=create_frame((uint8_t *)pui8Frame, COMMAND_SWITCHES_INTERRUPT_ENABLE, &parametro, sizeof(parametro), MAX_FRAME_SIZE);
+        // Se se pudo crear correctamente, se envia la trama
+        if (size>0) serial.write((char *)pui8Frame,size);
+    }
+}
